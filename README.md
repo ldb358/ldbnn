@@ -12,7 +12,7 @@ trained set these should be loaded. There should be a weight from non-output
 node to every node in the next layer in the nn. for example input->hidden and
 hidden->output.
 3. add the inputs for the sample
-4. for each node in the hidden layer use the summation 
+4. for each node in the hidden layer use the summation &Sigma;
 w<sub>i->h</sub>*y<sub>i</sub>. This value is then run through a sigmoid 
 activation function
 5. Repeat this process from the hidden to output layer. You now have the 
