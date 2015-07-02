@@ -20,6 +20,17 @@ output.
 
 ### Training the nn:
 
+The training algorithm that I will use by default is the back propagation 
+algorithm. To use this we start with output.
+
+1. For each output calculate &Delta; using the expected value Z and the 
+output of the output nodes Y<sub>O<sub>i</sub></sub> where &Delta;
+<sub>O<sub>i</sub></sub> = Z <sub>expected O<sub>i</sub></sub> - 
+Y<sub>O<sub>i</sub></sub>
+
+2. For each node in the hidden layer calculate the &Delta;<sub>H<sub>i</sub></sub>
+using the summation of all outputs such that &Delta;<sub>H<sub>i</sub></sub> = 
+&Sigma; &Delta;<sub>O<sub>n</sub></sub>*w<sub>i,n</sub>
 
 ### Components
 
