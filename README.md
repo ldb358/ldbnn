@@ -15,8 +15,7 @@ hidden->output.
 4. for each node in the hidden layer use the summation &Sigma;
 w<sub>i->h</sub>*y<sub>i</sub>. This value is then run through a sigmoid 
 activation function
-5. Repeat this process from the hidden to output layer. You now have the 
-output.
+5. Repeat this process for each layer, the output of the last layer is the output
 
 ### Training the nn:
 
@@ -32,6 +31,14 @@ Y<sub>O<sub>i</sub></sub>
 using the summation of all outputs such that &delta;<sub>H<sub>i</sub></sub> = 
 &Sigma; &delta;<sub>O<sub>n</sub></sub>*w<sub>i,n</sub>
 
+3. Repeat this process until all deltas are calculated.
+
+4. for each weight update it using: w`<sub>i,n</sub> = w<sub>i,n</sub> + 
+N*&Delta;<sub>n</sub>*(df(e)/de)*y<sub>Prev Layer<sub>i</sub></sub>
+Note: N is the training speed coefficient
+
+5. Repeat entire process until results are good
+
 ### Components
 
 Note this is just the running part of the implementation testing will be addded later
@@ -41,20 +48,23 @@ class Node{
 	vector<float> w;
 	//performs the activation sumation and returns an output
 	float activation(vector<float> inputs); //assert(w.size() == inputs.size());
+	//perfroms the same operation as the activation function except with the derivative
+	float activation_prime(vector<float> inputs);
 	//populates the weights randomly. n is the number of inputs
 	void populate_w(int n); 
 }
 
 class NeuralNetwork{
-	vector<Node> outputs;
-	vector<Node> hidden;
-	
+	vector< vector<Node> > layers;
+	int N;	
 	//sets up the nn by initallizing all of the hidden and output nodes, also sets
-	//up the weights, either random or in the future from a file
-	void NeuralNetwork(int input_s, int hidden_s, int output_s);
+	//up the weights, either random or in the future from a file. There will be
+	//layer_n + 1(the output layer) number of layers in the nn
+	void NeuralNetwork(int input_s, int hidden_s, int layer_n);
 	//gets a vector output for vector of inputs.
 	vector<float> run(vector<float> inputs); 
+	//run a single training iteration on the network. Input and output size must 
+	//be correct
+	void train_inter(vector<float> inputs, vector<float> expected_outputs);
 }
-
-
 ```
