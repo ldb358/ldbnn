@@ -20,7 +20,7 @@ class Node{
 	//adjust the weights using back propagation. Y will come from the input connected 
 	//with the width we are adjusting 
 	void adjust_w(float N, float delta_y, std::vector<float> &inputs);
-
+	float get_w(int index);
 };
 
 class NeuralNetwork{
@@ -31,10 +31,10 @@ class NeuralNetwork{
 	//layer_n + 1(the output layer) number of layers in the nn
 	NeuralNetwork(std::vector<int> layer_s, int layer_n, int input_s, int learning_rate);
 	//gets a vector output for vector of inputs.
-	std::vector<float> run(std::vector<float> inputs); 
+	std::vector<float> run(std::vector<float> &inputs); 
 	//run a single training iteration on the network. Input and output size must 
 	//be correct
-	void train_inter(std::vector<float> inputs, std::vector<float> expected_outputs);
+	void train_iter(std::vector<float> &inputs, std::vector<float> &expected_outputs);
 };
 #define LDBNN_CORE
 #endif
