@@ -1,4 +1,4 @@
-#include "nn.h"
+#include "L_NN/nn.h"
 
 #include<iostream>
 #include<stdlib.h>
