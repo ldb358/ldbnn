@@ -1,6 +1,9 @@
 #ifndef LDBNN_CORE
 
 #include<vector>
+#include <exception>
+#include <stdexcept>
+
 
 class Node{
 	private:
@@ -17,6 +20,8 @@ class Node{
 	double activation_prime(std::vector<double> &inputs);
 	//populates the weights randomly. n is the number of inputs
 	void populate_w(int n); 
+	//populates the weights with a static value, useful for testing and debugging
+	void populate_w(int n, double val);
 	//adjust the weights using back propagation. Y will come from the input connected 
 	//with the width we are adjusting 
 	void adjust_w(double N, double delta_y, std::vector<double> &inputs);
@@ -36,6 +41,12 @@ class NeuralNetwork{
 	//run a single training iteration on the network. Input and output size must 
 	//be correct
 	double train_iter(std::vector<double> inputs, std::vector<double> &expected_outputs);
+};
+
+class InvalidConstriants: public std::exception{
+	virtual const char* what() const throw(){
+	  	return "This should never happen you might be using this function wrong";
+	}
 };
 #define LDBNN_CORE
 #endif

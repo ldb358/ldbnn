@@ -36,10 +36,19 @@ double Node::activation_prime(std::vector<double> &inputs){
 }
 
 void Node::populate_w(int n){
+	w.clear();
 	for(int i=0; i < n; ++i){
 		//generate a random value between 0-1
 		//w.push_back((rand()%101)/100.0);
 		w.push_back(.5);
+	}
+}
+
+void Node::populate_w(int n, double val){
+	// populate_w with a static value
+	w.clear();
+	for(int i=0; i < n; ++i){
+		w.push_back(val);
 	}
 }
 
